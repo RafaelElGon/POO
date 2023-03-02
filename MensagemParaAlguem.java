@@ -1,18 +1,18 @@
 public class MensagemParaAlguem extends Mensagem {
     private String emailDestinatario;
 
-    public MensagemParaAlguem(String emailRemetente, String emailDestinatario, boolean anonima){
-        super(emailRemetente, emailDestinatario, anonima);
+    public MensagemParaAlguem(String texto, String emailRemetente, boolean anonima){
+        super(texto, emailRemetente, anonima);
 
     }
     @Override
     public String getTextoCompletoAExibir() {
         if(ehAnonima()){
-            return "Mensagem de " + super.getEmailRemetente() + " para "
-                    + emailDestinatario + ". Texto: " + super.getTexto();
+            return "Mensagem de " + getEmailRemetente() + " para "
+                    + emailDestinatario + ". Texto: " + getTexto();
         }
         return "Mensagem para " + emailDestinatario +
-                ". Texto: " + super.getTexto();
+                ". Texto: " + getTexto();
     }
     public String getEmailDestinatario() {
         return emailDestinatario;

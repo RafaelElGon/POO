@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaAmigo {
-    private List<Mensagem> mensagens;
-    private List<Amigo> amigos;
+    private List<Mensagem> mensagens = new ArrayList<>();
+    private List<Amigo> amigos = new ArrayList<>();
 
     public void cadastrarAmigo(String nomeAmigo, String emailAmigo){
         this.amigos.add(new Amigo(nomeAmigo, emailAmigo));
@@ -28,12 +28,16 @@ public class SistemaAmigo {
         return mensagensAnonimas;
     }
     public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException{
-
+        emailAmigoSorteado = emailDaPessoa;
     }
     public List<Mensagem> pesquisaTodasAsMensagens(){
         return this.mensagens;
     }
     public String pesquisaAmigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException{
-
+        String amigoSorteado = "";
+        for(Amigo a : this.amigos){
+            amigoSorteado = a.getEmailAmigoSorteado();
+        }
+        return amigoSorteado;
     }
 }
