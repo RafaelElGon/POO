@@ -38,14 +38,18 @@ public class SistemaAmigo {
         return amigoPesquisado;
     }
 
-    public String pesquisaAmigoSecreto(String emailAmigo) {
+    public String pesquisaAmigoSecreto(String emailAmigo) throws AmigoInexistenteException, AmigoNaoSorteadoException{
         String amigoSecreto = null;
         for (Amigo a : this.amigos) {
             if (a.getEmail().equals(emailAmigo)) {
-                amigoSecreto = "Amigo secreto: " + a;
+                if(amigo.getEmailAmigoSorteado() == null){
+                    throw new AmigoNaoSorteadoException("Esse amigo não foi sorteado");
+                } else{
+                    return a.getEmailAmigoSorteado();
+                }
             }
         }
-        return amigoSecreto;
+        throw new AmigoInexistenteException("Amigo inexistente");
     }
 
     public List<Mensagem> pesquisaMensagensAnonimas() {
