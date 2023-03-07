@@ -68,6 +68,7 @@ public class SistemaAmigo {
     }
 
     public List<Mensagem> pesquisaTodasAsMensagens() {
-        return this.mensagens;
+        List<Mensagem> mensagemCopia = new ArrayList<>(this.mensagens);
+        return mensagemCopia;
     }
 }
