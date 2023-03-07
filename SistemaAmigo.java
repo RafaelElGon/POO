@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaAmigo {
-    private List<Mensagem> mensagens = new ArrayList<>();
-    private List<Amigo> amigos = new ArrayList<>();
+    private List<Mensagem> mensagens;
+    private List<Amigo> amigos;
+    
+    public SistemaAmigo(){
+            this.mensagens = new ArrayList<>();
+            this.amigos = new ArrayList<>();
+    }
 
     public void cadastrarAmigo(String nomeAmigo, String emailAmigo) {
         this.amigos.add(new Amigo(nomeAmigo, emailAmigo));
