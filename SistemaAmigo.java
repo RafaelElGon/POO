@@ -1,3 +1,5 @@
+package SistemaAmigo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,39 +7,62 @@ public class SistemaAmigo {
     private List<Mensagem> mensagens = new ArrayList<>();
     private List<Amigo> amigos = new ArrayList<>();
 
-    public void cadastrarAmigo(String nomeAmigo, String emailAmigo){
+    public void cadastrarAmigo(String nomeAmigo, String emailAmigo) {
         this.amigos.add(new Amigo(nomeAmigo, emailAmigo));
     }
-    public Amigo pesquisaAmigo(String emailAmigo){
+
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
+    public List<Amigo> getAmigos() {
+        return amigos;
+    }
+
+    public void cadastrarMensagens(Mensagem m) {
+        this.mensagens.add(m);
+    }
+
+    public Amigo pesquisaAmigo(String emailAmigo) {
         Amigo amigoPesquisado = null;
-        for(Amigo a: this.amigos){
-            if(a.getEmail().equals(emailAmigo)){
+        for (Amigo a : this.amigos) {
+            if (a.getEmail().equals(emailAmigo)) {
                 amigoPesquisado = a;
             }
         }
         return amigoPesquisado;
     }
-    public List<Mensagem> pesquisaMensagensAnonimas(){
+
+    public String pesquisaAmigoSecreto(String emailAmigo) {
+        String amigoSecreto = null;
+        for (Amigo a : this.amigos) {
+            if (a.getEmail().equals(emailAmigo)) {
+                amigoSecreto = "Amigo secreto: " + a;
+            }
+        }
+        return amigoSecreto;
+    }
+
+    public List<Mensagem> pesquisaMensagensAnonimas() {
         List<Mensagem> mensagensAnonimas = new ArrayList<>();
 
-        for(Mensagem m: mensagens){
-            if(m.ehAnonima()){
+        for (Mensagem m : this.mensagens) {
+            if (!m.ehAnonima()) {
                 mensagensAnonimas.add(m);
             }
         }
         return mensagensAnonimas;
     }
-    public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException{
-        emailAmigoSorteado = emailDaPessoa;
-    }
-    public List<Mensagem> pesquisaTodasAsMensagens(){
-        return this.mensagens;
-    }
-    public String pesquisaAmigoSecretoDe(String emailDaPessoa) throws AmigoInexistenteException, AmigoNaoSorteadoException{
-        String amigoSorteado = "";
-        for(Amigo a : this.amigos){
-            amigoSorteado = a.getEmailAmigoSorteado();
+    public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException {
+        Amigo a = pesquisaAmigo(emailDaPessoa);
+        if( a == null){
+            throw new AmigoInexistenteException("No bitches?");
+        } else {
+            a.setEmailAmigoSorteado(emailAmigoSorteado);
         }
-        return amigoSorteado;
+    }
+
+    public List<Mensagem> pesquisaTodasAsMensagens() {
+        return this.mensagens;
     }
 }
