@@ -6,13 +6,13 @@ import java.util.List;
 public class SistemaAmigo {
     private List<Mensagem> mensagens;
     private List<Amigo> amigos;
-    
+
     public SistemaAmigo(){
-            this.mensagens = new ArrayList<>();
-            this.amigos = new ArrayList<>();
+        this.mensagens = new ArrayList<>();
+        this.amigos = new ArrayList<>();
     }
 
-    public void cadastrarAmigo(String nomeAmigo, String emailAmigo) {
+    public void cadastraAmigo(String nomeAmigo, String emailAmigo) {
         this.amigos.add(new Amigo(nomeAmigo, emailAmigo));
     }
 
@@ -28,28 +28,27 @@ public class SistemaAmigo {
         this.mensagens.add(m);
     }
 
-    public Amigo pesquisaAmigo(String emailAmigo) {
+    public Amigo pesquisaAmigo(String emailAmigo) throws AmigoInexistenteException{
         Amigo amigoPesquisado = null;
         for (Amigo a : this.amigos) {
             if (a.getEmail().equals(emailAmigo)) {
                 amigoPesquisado = a;
             }
         }
+        if(amigoPesquisado == null){throw new AmigoInexistenteException("Amigo Inexistente");}
         return amigoPesquisado;
     }
 
-    public String pesquisaAmigoSecreto(String emailAmigo) throws AmigoInexistenteException, AmigoNaoSorteadoException{
+    public String pesquisaAmigoSecreto(String emailAmigo) throws AmigoInexistenteException{
         String amigoSecreto = null;
         for (Amigo a : this.amigos) {
             if (a.getEmail().equals(emailAmigo)) {
-                if(amigo.getEmailAmigoSorteado() == null){
-                    throw new AmigoNaoSorteadoException("Esse amigo não foi sorteado");
-                } else{
-                    return a.getEmailAmigoSorteado();
-                }
+                amigoSecreto = "Amigo secreto: " + a;
             }
         }
-        throw new AmigoInexistenteException("Amigo inexistente");
+        if(amigoSecreto == null){throw new AmigoInexistenteException("Amigo Inexistente");}
+
+        return amigoSecreto;
     }
 
     public List<Mensagem> pesquisaMensagensAnonimas() {
@@ -65,14 +64,13 @@ public class SistemaAmigo {
     public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException {
         Amigo a = pesquisaAmigo(emailDaPessoa);
         if( a == null){
-            throw new AmigoInexistenteException("No bitches?");
+            throw new AmigoInexistenteException("Amigo Inexistente");
         } else {
             a.setEmailAmigoSorteado(emailAmigoSorteado);
         }
     }
 
     public List<Mensagem> pesquisaTodasAsMensagens() {
-        List<Mensagem> mensagemCopia = new ArrayList<>(this.mensagens);
-        return mensagemCopia;
+        return this.mensagens;
     }
 }

@@ -3,8 +3,8 @@ package SistemaAmigo;
 public class TestaSistemaAmigo {
     public static void main(String[] args) {
         SistemaAmigo sys = new SistemaAmigo();
-        sys.cadastrarAmigo("José", "josé@email.com");
-        sys.cadastrarAmigo("Maria", "maria@email.com");
+        sys.cadastraAmigo("José", "josé@email.com");
+        sys.cadastraAmigo("Maria", "maria@email.com");
         try {
             sys.configuraAmigoSecretoDe("josé@email.com", "maria@email.com");
         } catch (AmigoInexistenteException e) {

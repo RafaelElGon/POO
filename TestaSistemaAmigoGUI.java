@@ -14,7 +14,7 @@ public class TestaSistemaAmigoGUI {
         for(int i = 0; i <= qtAmigos; i++){
             String nomeParticipante = JOptionPane.showInputDialog("Nome do participante");
             String emailParticipante = JOptionPane.showInputDialog("Email do participante");
-            sys.cadastrarAmigo(nomeParticipante, emailParticipante);
+            sys.cadastraAmigo(nomeParticipante, emailParticipante);
         }
 
         //usar uma lista diferente pra não interferir com os dados em sys.getAmigos();
