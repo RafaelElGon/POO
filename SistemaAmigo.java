@@ -1,4 +1,4 @@
-package SistemaAmigo;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,12 @@ public class SistemaAmigo {
         this.amigos = new ArrayList<>();
     }
 
-    public void cadastraAmigo(String nomeAmigo, String emailAmigo) {
+    public void cadastraAmigo(String nomeAmigo, String emailAmigo) throws AmigoJaExisteException{
+        for(Amigo a: this.amigos){
+            if(a.equals(new Amigo(nomeAmigo, emailAmigo))){
+                throw new AmigoJaExisteException("Amigo já está cadastrado");
+            }
+        }
         this.amigos.add(new Amigo(nomeAmigo, emailAmigo));
     }
 
@@ -39,7 +44,7 @@ public class SistemaAmigo {
         return amigoPesquisado;
     }
 
-    public String pesquisaAmigoSecreto(String emailAmigo) throws AmigoInexistenteException{
+    public String pesquisaAmigoSecreto(String emailAmigo) throws AmigoInexistenteException, AmigoNaoSorteadoException{
         String amigoSecreto = null;
         for (Amigo a : this.amigos) {
             if (a.getEmail().equals(emailAmigo)) {
@@ -72,5 +77,11 @@ public class SistemaAmigo {
 
     public List<Mensagem> pesquisaTodasAsMensagens() {
         return this.mensagens;
+    }
+
+    public String enviarMensagemParaAlguem(String texto, String remetente, String destinatario, boolean anonima){
+        Mensagem msg = new MensagemParaAlguem(texto, remetente, destinatario, anonima);
+
+        return msg.getTextoCompletoAExibir();
     }
 }

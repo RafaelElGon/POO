@@ -3,17 +3,17 @@ package SistemaAmigo;
 import java.util.HashMap;
 
 public class SistemaAmigoMap {
-    private HashMap<String, String> amigos;
-    private HashMap<String, String> mensagens;
+    private HashMap<String, String> amigosMap;
+    private HashMap<String, String> mensagensMap;
 
     public SistemaAmigoMap(){
-        this.mensagens = new HashMap<>();
-        this.amigos = new HashMap<>();
+        this.mensagensMap = new HashMap<>();
+        this.amigosMap = new HashMap<>();
     }
-    public void cadastraAmigo(String nomeAmigo, String emailAmigo) {
-            this.amigos.put();
-            this.mensagens.put()
-        }
+//    public void cadastraAmigo(String nomeAmigo, String emailAmigo) {
+//            this.amigosMap.put();
+//            this.mensagensMap.put();
+//        }
 
 }
 

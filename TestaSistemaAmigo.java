@@ -1,10 +1,14 @@
-package SistemaAmigo;
+
 
 public class TestaSistemaAmigo {
     public static void main(String[] args) {
         SistemaAmigo sys = new SistemaAmigo();
-        sys.cadastraAmigo("José", "josé@email.com");
-        sys.cadastraAmigo("Maria", "maria@email.com");
+        try {
+            sys.cadastraAmigo("José", "josé@email.com");
+            sys.cadastraAmigo("Maria", "maria@email.com");
+        } catch (AmigoJaExisteException e){
+            System.out.println("Amigo já existe");
+        }
         try {
             sys.configuraAmigoSecretoDe("josé@email.com", "maria@email.com");
         } catch (AmigoInexistenteException e) {
@@ -14,14 +18,18 @@ public class TestaSistemaAmigo {
         System.out.println(msg.getTextoCompletoAExibir());
         sys.cadastrarMensagens(msg);
 
-        Mensagem msgTodos = new MensagemParaTodos("Never gonna give you up", "maria@email.com", true);
-        System.out.println(msgTodos.getTextoCompletoAExibir());
+//        Mensagem msgTodos = new MensagemParaTodos("Never gonna give you up", "maria@email.com", true);
+//        System.out.println(msgTodos.getTextoCompletoAExibir());
         for (Mensagem m : sys.pesquisaMensagensAnonimas()) {
             System.out.println(m.getTextoCompletoAExibir());
         }
+        try{
         String secretoPesquisado = sys.pesquisaAmigoSecreto("maria@email.com");
         if(secretoPesquisado.equals("Amigo Secreto: maria@email.com")){
             System.out.println("Ok");
+        }
+    } catch (AmigoNaoSorteadoException | AmigoInexistenteException e){
+            System.out.println("Amigo Inexistente");
         }
     }
 }

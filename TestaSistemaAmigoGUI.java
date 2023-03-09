@@ -1,5 +1,3 @@
-package SistemaAmigo;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +12,7 @@ public class TestaSistemaAmigoGUI {
         for(int i = 0; i <= qtAmigos; i++){
             String nomeParticipante = JOptionPane.showInputDialog("Nome do participante");
             String emailParticipante = JOptionPane.showInputDialog("Email do participante");
-            sys.cadastraAmigo(nomeParticipante, emailParticipante);
+//            sys.cadastraAmigo(nomeParticipante, emailParticipante);
         }
 
         //usar uma lista diferente pra não interferir com os dados em sys.getAmigos();
@@ -26,7 +24,7 @@ public class TestaSistemaAmigoGUI {
                 amigoSorteio.add(amigoList.get(posicaoSorteada));
                 amigoList.remove(amigoList.get(posicaoSorteada));
                 if(i != posicaoSorteada){
-                    sys.configuraAmigoSecretoDe(amigoList.get(i).getEmail(), amigoSorteio.get(i).getEmail());
+//                    sys.configuraAmigoSecretoDe(amigoList.get(i).getEmail(), amigoSorteio.get(i).getEmail());
             }
         }
             for(Amigo a: amigoSorteio){

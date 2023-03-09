@@ -1,4 +1,4 @@
-public class AmigoInexistenteException extends NullPointerException {
+public class AmigoInexistenteException extends Exception {
     public AmigoInexistenteException(String msg){
         super(msg);
     }
