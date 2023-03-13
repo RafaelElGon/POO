@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ public class SistemaAmigo {
 
     public void cadastraAmigo(String nomeAmigo, String emailAmigo) throws AmigoJaExisteException{
         for(Amigo a: this.amigos){
-            if(a.equals(new Amigo(nomeAmigo, emailAmigo))){
+            if(a.getEmail().equals(emailAmigo)){
                 throw new AmigoJaExisteException("Amigo já está cadastrado");
             }
         }
@@ -44,7 +42,7 @@ public class SistemaAmigo {
         return amigoPesquisado;
     }
 
-    public String pesquisaAmigoSecreto(String emailAmigo) throws AmigoInexistenteException, AmigoNaoSorteadoException{
+    public String pesquisaAmigoSecreto(String emailAmigo) throws AmigoInexistenteException{
         String amigoSecreto = null;
         for (Amigo a : this.amigos) {
             if (a.getEmail().equals(emailAmigo)) {
@@ -66,22 +64,27 @@ public class SistemaAmigo {
         }
         return mensagensAnonimas;
     }
-    public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException {
-        Amigo a = pesquisaAmigo(emailDaPessoa);
-        if( a == null){
-            throw new AmigoInexistenteException("Amigo Inexistente");
-        } else {
-            a.setEmailAmigoSorteado(emailAmigoSorteado);
+    public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws AmigoInexistenteException, AmigoNaoSorteadoException {
+        Amigo amigoPesquisado = pesquisaAmigo(emailDaPessoa);
+        for(Amigo a: this.amigos) {
+            if (amigoPesquisado == null) {
+                throw new AmigoInexistenteException("Amigo Inexistente");
+            } else if (a.getEmailAmigoSorteado() == null) {
+                throw new AmigoNaoSorteadoException("Amigo não foi sorteado");
+            } else {
+                a.setEmailAmigoSorteado(emailAmigoSorteado);
+                break;
+            }
         }
-    }
-
-    public List<Mensagem> pesquisaTodasAsMensagens() {
-        return this.mensagens;
     }
 
     public String enviarMensagemParaAlguem(String texto, String remetente, String destinatario, boolean anonima){
         Mensagem msg = new MensagemParaAlguem(texto, remetente, destinatario, anonima);
 
         return msg.getTextoCompletoAExibir();
+    }
+
+    public List<Mensagem> pesquisaTodasAsMensagens() {
+        return this.mensagens;
     }
 }
