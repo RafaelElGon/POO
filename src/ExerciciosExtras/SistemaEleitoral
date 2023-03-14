@@ -1,3 +1,4 @@
+2)    
     public int contarVotosParaCandidato(int numero){
         int contaVotos = 0;
         
@@ -19,3 +20,30 @@
         return true;
     }
 }
+
+3)
+    Lançará uma exceção quando não existir um nome que será uma chave no mapa que se refira ao candidato mencionado
+
+4)
+    public class SistemaEleitoralMapTest{
+
+        SistemaEleitoralMap sysMap;
+
+        @Test
+        void testCadastroCandidatoEContagem(){
+            sysMap.cadastraCandidato("Tiririca", 2222, Partido partido);
+            assertEquals(0, sysMap.contarVotosParaCandidato(2222));
+
+            sysMap.cadastraCandidato("Tiririca", 10, Partido partido2);
+        }
+
+        @Test
+        void testCadastroEleitorEVotar(){
+            sysMap.cadastraEleitor(String "eleitor", String "titulo");
+            assertTrue(this.eleitores.containsKey("titulo"))
+
+            sysMap.votar("titulo", 2222);
+            assertTrue(this.votos.size() = 1);
+        }
+
+    }
