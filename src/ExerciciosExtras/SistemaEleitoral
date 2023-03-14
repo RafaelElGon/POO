@@ -1,0 +1,21 @@
+    public int contarVotosParaCandidato(int numero){
+        int contaVotos = 0;
+        
+        for(Voto v: this.votos){
+            if(this.votos.getNumeroVotado() = numero){
+                contaVotos ++;
+            }
+        }
+        return contaVotos;
+
+
+    public boolean cadastraCandidato(String nome, int numero, Partido partido){
+        if(this.candidatos.containsKey(nome)){
+            return false;
+        }
+        Candidato c = new Candidato(nome, numero, partido);
+
+        this.candidatos.put(nome, c);
+        return true;
+    }
+}
