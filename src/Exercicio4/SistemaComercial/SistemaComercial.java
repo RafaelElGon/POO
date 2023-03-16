@@ -1,4 +1,4 @@
-package SistemaComercial;
+package Exercicio4.SistemaComercial;
 
 import java.util.Collection;
 public interface SistemaComercial {

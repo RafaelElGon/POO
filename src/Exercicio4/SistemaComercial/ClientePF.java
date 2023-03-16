@@ -1,4 +1,4 @@
-package SistemaComercial;
+package Exercicio4.SistemaComercial;
 
 public class ClientePF extends Cliente {
     private String CPF;
@@ -6,7 +6,7 @@ public class ClientePF extends Cliente {
         super(nome, endereco, email);
         this.CPF = CPF;
     }
-    @Override
+    @Override //retorna o cpf
     public String getId() {
         return this.CPF;
     }

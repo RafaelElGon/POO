@@ -1,4 +1,4 @@
-package SistemaComercial;
+package Exercicio4.SistemaComercial;
 
 public abstract class Cliente {
     private String nome;
