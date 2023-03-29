@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class AgendaGUIV2 extends JFrame {
     JLabel linha1, linha2;
-    ImageIcon finger = new ImageIcon("./Imagens/me caguei de rir.png");
+    ImageIcon img = new ImageIcon("./Imagens/image.png");
     public AgendaGUIV2(){
         setTitle("Janela");
         setSize(1080, 720);
