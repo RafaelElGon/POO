@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class AgendaGUIV3 extends JFrame {
     JLabel line1, line2;
+    Agenda agenda = new AgendaAyla();
     ImageIcon peumImg = new ImageIcon("./Imagens/peuns.jpg");
     ImageIcon addImg = new ImageIcon("./Imagens/addButton.jpg");
     ImageIcon deleteImg = new ImageIcon("./Imagens/removeButton.jpg");
@@ -20,12 +21,18 @@ public class AgendaGUIV3 extends JFrame {
         line1 = new JLabel("Agenda inacreditável!!!!!!!!!");
         line1.setForeground(Color.black);
         line2 = new JLabel(peumImg, JLabel.CENTER);
+
         addButton = new JButton("Add", addImg);
-        //addButton.addActionListener(new AgendaAddController(agenda, this));
+        addButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        addButton.addActionListener(new AgendaAddController(agenda, this));
+
         searchButton = new JButton("Search", searchImg);
-        //searchButton.addActionListener(new AgendaSearchController(agenda, this));
+        searchButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        searchButton.addActionListener(new AgendaSearchController(agenda, this));
+
         removeButton = new JButton("Delete", deleteImg);
-        //removeButton.addActionListener(new AgendaRemoveController(agenda, this));
+        removeButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        removeButton.addActionListener(new AgendaRemoveController(agenda, this));
 
         getContentPane().setLayout(new GridLayout(3, 2));
         getContentPane().add(line1);

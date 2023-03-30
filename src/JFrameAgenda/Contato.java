@@ -2,15 +2,33 @@ package JFrameAgenda;
 
 public class Contato {
     private String name;
-    private int age;
+    private int dia;
+    private int mes;
 
-    public Contato(String name, int age){
-        this.age = age;
+    public Contato(String name, int dia, int mes){
+        this.dia = dia;
+        this.mes = mes;
         this.name = name;
     }
 
     public Contato(){
-        this("", 0);
+        this("", 0, 0);
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getDiaAniversario() {
+        return dia;
+    }
+
+    public int getMesAniversario() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
     }
 
     public String getName() {
@@ -21,11 +39,5 @@ public class Contato {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 }
